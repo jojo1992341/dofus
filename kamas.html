@@ -72,10 +72,19 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 20px;
+            align-items: baseline;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 0 20px;
         }
         .checkbox-container label {
-            margin: 10px;
+            margin: 8px 12px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 8px;
         }
         .input-group {
             margin-top: 30px;
@@ -390,6 +399,18 @@
         .import-button:hover {
             background: linear-gradient(90deg, #298a5b, #38a96f);
             transform: scale(1.05);
+        }
+
+        .selection-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .selection-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #f4e0b3;
+            text-shadow: 1px 1px 2px #000;
         }
     </style>
 </head>
