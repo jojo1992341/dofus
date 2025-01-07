@@ -2,11 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link type="image/x-icon" rel="shortcut icon" href="https://static.ankama.com/g/modules/ankama/logo/dofus/icon.svg" />
+    <link rel="shortcut icon" href="https://static.ankama.com/g/modules/ankama/logo/dofus/icon.svg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur d'astuces kamas Métiers</title>
     <style>
-        /* Style général */
         body {
             font-family: 'Trebuchet MS', sans-serif;
             color: #f4e0b3;
@@ -17,8 +16,6 @@
             overflow: auto;
             min-height: 100vh;
         }
-
-        /* Vidéo de fond */
         .background-video {
             position: absolute;
             top: 0;
@@ -29,8 +26,6 @@
             object-fit: cover;
             z-index: -1;
         }
-
-        /* Conteneur principal */
         .container {
             position: relative;
             z-index: 1;
@@ -41,16 +36,13 @@
             margin-top: 50px;
             min-height: 100vh;
             padding-bottom: 50px;
+            padding-top: 80px;
         }
-
-        /* Titre principal */
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px #3a2718;
         }
-
-        /* Bouton personnalisé */
         button {
             padding: 15px 30px;
             font-size: 18px;
@@ -62,13 +54,10 @@
             text-shadow: 1px 1px 2px #000;
             transition: background 0.3s ease, transform 0.2s ease;
         }
-
         button:hover {
             background: linear-gradient(90deg, #5b8a29, #6fa938);
             transform: scale(1.05);
         }
-
-        /* Résultat stylisé */
         #result {
             margin-top: 30px;
             font-size: 1.5em;
@@ -79,34 +68,27 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
             color: #fff;
         }
-
-        /* Alignement des cases à cocher */
         .checkbox-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 20px;
         }
-
         .checkbox-container label {
             margin: 10px;
         }
-
-        /* Nouveaux styles */
         .input-group {
             margin-top: 30px;
             padding: 20px;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
         }
-
         .resource-inputs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin: 20px 0;
         }
-
         .resource-inputs input {
             padding: 10px;
             border-radius: 5px;
@@ -114,21 +96,16 @@
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
-
         #calculs {
             margin-top: 20px;
             font-size: 1.2em;
         }
-
         #calculs p {
             margin: 10px 0;
         }
-
-        /* Ajouter ces styles */
         .craft-name {
             margin-bottom: 20px;
         }
-
         .craft-name input {
             width: 100%;
             padding: 10px;
@@ -139,19 +116,15 @@
             font-size: 1.1em;
             text-align: center;
         }
-
-        /* Ajouter ces styles */
         .saved-crafts {
             margin-top: 30px;
             padding: 20px;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
         }
-
         #crafts-list {
             margin-top: 15px;
         }
-
         .craft-item {
             padding: 10px;
             margin: 5px 0;
@@ -161,46 +134,277 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .delete-craft {
             color: #ff4444;
             cursor: pointer;
             margin-left: 10px;
         }
-
-        /* Ajouter ce nouveau style */
         .main-content {
             position: relative;
             z-index: 1;
             padding-top: 50px;
         }
-
-        /* Ajouter ces styles */
         .export-buttons {
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
         }
-
         .export-buttons button {
             flex: 1;
         }
-
-        /* Ajouter ce style */
         #rentabilite {
             font-weight: bold;
             white-space: nowrap;
         }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .success {
+            animation: pulse 0.5s ease-in-out;
+            border: 2px solid #5b8a29;
+        }
+        .error {
+            animation: shake 0.5s;
+            border: 2px solid #ff4444;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .resource-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-container {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 20px;
+            }
+
+            .checkbox-container label {
+                margin: 5px 0;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            #result {
+                font-size: 1.2em;
+                padding: 15px;
+                width: 100%;
+            }
+
+            .input-group {
+                padding: 15px;
+            }
+
+            .craft-name input {
+                font-size: 1em;
+            }
+
+            #calculs {
+                font-size: 1em;
+            }
+
+            .saved-crafts {
+                padding: 15px;
+            }
+
+            .craft-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .delete-craft {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .resource-inputs input {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            #result {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .checkbox-container {
+                margin-left: 10px;
+            }
+        }
+
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            color: #f4e0b3;
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .main-nav ul {
+                gap: 10px;
+            }
+            
+            .main-nav a {
+                font-size: 0.9em;
+                padding: 5px 10px;
+            }
+            
+            .container {
+                padding-top: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-nav ul {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .main-nav a {
+                font-size: 0.8em;
+                padding: 3px 8px;
+            }
+            
+            .container {
+                padding-top: 80px;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: #fff;
+            z-index: 1001;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+            border-left: 5px solid #388E3C;
+        }
+
+        .notification.error {
+            background: #F44336;
+            border-left: 5px solid #D32F2F;
+        }
+
+        .notification.warning {
+            background: #FF9800;
+            border-left: 5px solid #F57C00;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .notification.fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        .import-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background: linear-gradient(90deg, #1b6f3a, #298a5b);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px #000;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        .import-button:hover {
+            background: linear-gradient(90deg, #298a5b, #38a96f);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-    <!-- Vidéo de fond -->
     <video class="background-video" autoplay muted playsinline>
         <source src="https://static.ankama.com/dofus/ng/modules/homepage/unity/assets/header.mp4" type="video/mp4">
     </video>
-
-    <!-- Contenu principal -->
-    <div class="container">
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#metiers">Métiers</a></li>
+            <li><a href="#calcul">Calcul</a></li>
+            <li><a href="#saved">Crafts Sauvegardés</a></li>
+        </ul>
+    </nav>
+    <div class="container" id="metiers">
         <h1>Générateur d'astuces kamas Métiers</h1>
         <div class="checkbox-container">
             <h3>Sélectionnez les métiers :</h3>
@@ -211,72 +415,71 @@
             <label><input type="checkbox" value="Cordonnier" checked>Cordonnier</label>
             <label><input type="checkbox" value="Façonneur" checked>Façonneur</label>
             <label><input type="checkbox" value="Sculpteur" checked>Sculpteur</label>
-            <label><input type="checkbox" value="Pêcheur" unchecked>Pêcheur</label>
-            <label><input type="checkbox" value="Chasseur" unchecked>Chasseur</label>
-            <label><input type="checkbox" value="Bûcheron" unchecked>Bûcheron</label>
-            <label><input type="checkbox" value="Mineur" unchecked>Mineur</label>
+            <label><input type="checkbox" value="Pêcheur">Pêcheur</label>
+            <label><input type="checkbox" value="Chasseur">Chasseur</label>
+            <label><input type="checkbox" value="Bûcheron">Bûcheron</label>
+            <label><input type="checkbox" value="Mineur">Mineur</label>
         </div>
         <button onclick="genererMetier()">Générer une astuce kamas métier</button>
         <div id="result"></div>
-
-        <!-- Nouvelle section de calcul -->
-        <div class="input-group">
+        <div class="input-group" id="calcul">
             <h3>Calcul de rentabilité</h3>
             <div class="craft-name">
                 <input type="text" id="craftName" placeholder="Nom du craft">
             </div>
             <div class="resource-inputs">
-    <div class="resource-group">
-        <input type="number" id="prix1" placeholder="Prix ressource 1">
-        <input type="number" id="quantite1" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix2" placeholder="Prix ressource 2">
-        <input type="number" id="quantite2" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix3" placeholder="Prix ressource 3">
-        <input type="number" id="quantite3" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix4" placeholder="Prix ressource 4">
-        <input type="number" id="quantite4" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix5" placeholder="Prix ressource 5">
-        <input type="number" id="quantite5" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix6" placeholder="Prix ressource 6">
-        <input type="number" id="quantite6" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix7" placeholder="Prix ressource 7">
-        <input type="number" id="quantite7" placeholder="Quantité">
-    </div>
-    <div class="resource-group">
-        <input type="number" id="prix8" placeholder="Prix ressource 8">
-        <input type="number" id="quantite8" placeholder="Quantité">
-    </div>
-</div>
+                <div class="resource-group">
+                    <input type="number" id="prix1" placeholder="Prix ressource 1">
+                    <input type="number" id="quantite1" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix2" placeholder="Prix ressource 2">
+                    <input type="number" id="quantite2" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix3" placeholder="Prix ressource 3">
+                    <input type="number" id="quantite3" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix4" placeholder="Prix ressource 4">
+                    <input type="number" id="quantite4" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix5" placeholder="Prix ressource 5">
+                    <input type="number" id="quantite5" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix6" placeholder="Prix ressource 6">
+                    <input type="number" id="quantite6" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix7" placeholder="Prix ressource 7">
+                    <input type="number" id="quantite7" placeholder="Quantité">
+                </div>
+                <div class="resource-group">
+                    <input type="number" id="prix8" placeholder="Prix ressource 8">
+                    <input type="number" id="quantite8" placeholder="Quantité">
+                </div>
+            </div>
             <div id="calculs">
                 <p>Prix total: <span id="total"></span></p>
                 <p>Prix HDV: <input type="number" id="prixHDV"></p>
                 <p>Rentabilité: <span id="rentabilite"></span></p>
             </div>
-            <!-- Ajouter après la section de calcul -->
-<!-- Ajouter ce bouton dans la section saved-crafts -->
-<div class="saved-crafts">
-    <h3>Crafts Sauvegardés</h3>
-    <div class="export-buttons">
-        <button onclick="saveCraft()">Sauvegarder ce craft</button>
-        <button onclick="exportCrafts()">Exporter les crafts</button>
-    </div>
-    <div id="crafts-list"></div>
-</div>
+            <div class="saved-crafts" id="saved">
+                <h3>Crafts Sauvegardés</h3>
+                <div class="export-buttons">
+                    <button onclick="saveCraft()">Sauvegarder ce craft</button>
+                    <button onclick="exportCrafts()">Exporter Crafts</button>
+                    <label for="import-file" class="import-button">
+                        <input type="file" id="import-file" accept=".txt" style="display: none;">
+                        Importer Crafts
+                    </label>
+                </div>
+                <div id="crafts-list"></div>
+            </div>
         </div>
     </div>
-
     <script>
         const metiers = ['Bricoleur', 'Bijoutier', 'Forgeron', 'Tailleur', 'Cordonnier', 'Façonneur', 'Sculpteur', 'Pêcheur', 'Chasseur', 'Bûcheron', 'Mineur'];
 
@@ -293,112 +496,176 @@
             document.getElementById('result').innerText = `${metier} - Niveau: ${niveauDebut}-${niveauFin}`;
         }
 
-// Ajouter cette fonction avant calculerRentabilite
-function formatNumber(number) {
-    // Convertir en entier et formater avec des apostrophes
-    return Math.round(number).toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, "'");
-}
+        function formatNumber(number) {
+            return Math.round(number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+        }
 
-// Modifier la fonction calculerRentabilite
-function calculerRentabilite() {
-    let total = 0;
-    
-    for (let i = 1; i <= 8; i++) {
-        const prix = parseFloat(document.getElementById(`prix${i}`).value) || 0;
-        const quantite = parseFloat(document.getElementById(`quantite${i}`).value) || 1;
-        total += prix * quantite;
-    }
-    
-    const prixHDV = parseFloat(document.getElementById('prixHDV').value) || 0;
-    const rentabilite = prixHDV - total;
-    const rentabilitePourcent = total > 0 ? ((rentabilite / total) * 100).toFixed(2) : 0;
-    
-    document.getElementById('total').textContent = `${formatNumber(total)} k`;
-    const rentabiliteText = `${formatNumber(rentabilite)} k soit ${rentabilitePourcent}% de bénéfice`;
-    document.getElementById('rentabilite').textContent = rentabiliteText;
-    
-    // Couleurs pour la rentabilité
-    const color = rentabilite >= 0 ? '#5b8a29' : '#ff4444';
-    document.getElementById('rentabilite').style.color = color;
-}
+        function calculerRentabilite() {
+            let total = 0;
+            for (let i = 1; i <= 8; i++) {
+                const prix = parseFloat(document.getElementById(`prix${i}`).value) || 0;
+                const quantite = parseFloat(document.getElementById(`quantite${i}`).value) || 1;
+                total += prix * quantite;
+            }
+            const prixHDV = parseFloat(document.getElementById('prixHDV').value) || 0;
+            const rentabilite = prixHDV - total;
+            const rentabilitePourcent = total > 0 ? ((rentabilite / total) * 100).toFixed(2) : 0;
+            document.getElementById('total').textContent = `${formatNumber(total)} k`;
+            const rentabiliteText = `${formatNumber(rentabilite)} k soit ${rentabilitePourcent}% de bénéfice`;
+            document.getElementById('rentabilite').textContent = rentabiliteText;
+            document.getElementById('rentabilite').style.color = rentabilite >= 0 ? '#5b8a29' : '#ff4444';
+        }
 
         document.querySelectorAll('.resource-inputs input, #prixHDV').forEach(input => {
             input.addEventListener('input', calculerRentabilite);
         });
 
-// Ajouter ces fonctions
-let savedCrafts = JSON.parse(localStorage.getItem('savedCrafts')) || [];
+        let savedCrafts = JSON.parse(localStorage.getItem('savedCrafts')) || [];
 
-function saveCraft() {
-    const craftName = document.getElementById('craftName').value || 'Craft sans nom';
-    const total = document.getElementById('total').textContent;
-    const rentabilite = document.getElementById('rentabilite').textContent;
-    
-    const craft = {
-        name: craftName,
-        total: total,
-        rentabilite: rentabilite,
-        timestamp: new Date().toLocaleString()
-    };
-    
-    savedCrafts.push(craft);
-    localStorage.setItem('savedCrafts', JSON.stringify(savedCrafts));
-    displayCrafts();
-}
+        function showNotification(message, type = 'success', duration = 3000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('fade-out');
+                notification.addEventListener('animationend', () => {
+                    notification.remove();
+                });
+            }, duration);
+        }
 
-function displayCrafts() {
-    const craftsList = document.getElementById('crafts-list');
-    craftsList.innerHTML = savedCrafts.map((craft, index) => `
-        <div class="craft-item">
-            <div>
-                <strong>${craft.name}</strong><br>
-                Total: ${craft.total} | Rentabilité: ${craft.rentabilite}<br>
-                <small>${craft.timestamp}</small>
-            </div>
-            <span class="delete-craft" onclick="deleteCraft(${index})">✖</span>
-        </div>
-    `).join('');
-}
+        function saveCraft() {
+            try {
+                const craftName = document.getElementById('craftName').value || 'Craft sans nom';
+                const total = document.getElementById('total').textContent;
+                const rentabilite = document.getElementById('rentabilite').textContent;
+                const craft = { name: craftName, total: total, rentabilite: rentabilite, timestamp: new Date().toLocaleString() };
+                savedCrafts.push(craft);
+                localStorage.setItem('savedCrafts', JSON.stringify(savedCrafts));
+                displayCrafts();
+                showNotification('Craft sauvegardé avec succès !', 'success');
+            } catch (error) {
+                showNotification('Erreur lors de la sauvegarde', 'error');
+            }
+        }
 
-function deleteCraft(index) {
-    savedCrafts.splice(index, 1);
-    localStorage.setItem('savedCrafts', JSON.stringify(savedCrafts));
-    displayCrafts();
-}
+        function displayCrafts() {
+            const craftsList = document.getElementById('crafts-list');
+            craftsList.innerHTML = savedCrafts.map((craft, index) => `
+                <div class="craft-item">
+                    <div>
+                        <strong>${craft.name}</strong><br>
+                        Total: ${craft.total} | Rentabilité: ${craft.rentabilite}<br>
+                        <small>${craft.timestamp}</small>
+                    </div>
+                    <span class="delete-craft" onclick="deleteCraft(${index})">✖</span>
+                </div>
+            `).join('');
+        }
 
-// Appeler displayCrafts au chargement de la page
-window.onload = function() {
-    displayCrafts();
-    // Ajouter l'appel à calculerRentabilite() si nécessaire
-};
+        function deleteCraft(index) {
+            savedCrafts.splice(index, 1);
+            localStorage.setItem('savedCrafts', JSON.stringify(savedCrafts));
+            displayCrafts();
+        }
 
-// Ajouter cette fonction
-function exportCrafts() {
-    if (savedCrafts.length === 0) {
-        alert('Aucun craft à exporter');
-        return;
-    }
+        window.onload = function() {
+            displayCrafts();
+        };
 
-    let content = "Liste des crafts sauvegardés :\n\n";
-    savedCrafts.forEach((craft, index) => {
-        content += `Craft ${index + 1} :\n`;
-        content += `- Nom : ${craft.name}\n`;
-        content += `- Prix total : ${craft.total}\n`;
-        content += `- Rentabilité : ${craft.rentabilite}\n`;
-        content += `- Date : ${craft.timestamp}\n\n`;
-    });
+        function exportCrafts() {
+            try {
+                if (savedCrafts.length === 0) {
+                    alert('Aucun craft à exporter');
+                    return;
+                }
+                let content = "Liste des crafts sauvegardés :\n\n";
+                savedCrafts.forEach((craft, index) => {
+                    content += `Craft ${index + 1} :\n`;
+                    content += `- Nom : ${craft.name}\n`;
+                    content += `- Prix total : ${craft.total}\n`;
+                    content += `- Rentabilité : ${craft.rentabilite}\n`;
+                    content += `- Date : ${craft.timestamp}\n\n`;
+                });
+                const blob = new Blob([content], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'crafts_sauvegardes.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showNotification('Crafts exportés avec succès', 'success');
+            } catch (error) {
+                showNotification('Erreur lors de l\'export', 'error');
+            }
+        }
 
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'crafts_sauvegardes.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
+        document.querySelectorAll('.main-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        document.getElementById('import-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const content = event.target.result;
+                    const importedCrafts = parseImportedCrafts(content);
+                    
+                    if (importedCrafts.length === 0) {
+                        throw new Error('Format de fichier invalide');
+                    }
+                    
+                    savedCrafts = importedCrafts;
+                    localStorage.setItem('savedCrafts', JSON.stringify(savedCrafts));
+                    displayCrafts();
+                    showNotification(`${importedCrafts.length} crafts importés avec succès`, 'success');
+                } catch (error) {
+                    showNotification('Erreur lors de l\'importation : ' + error.message, 'error');
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        function parseImportedCrafts(content) {
+            const crafts = [];
+            const lines = content.split('\n');
+            let currentCraft = null;
+
+            lines.forEach(line => {
+                if (line.startsWith('Craft')) {
+                    if (currentCraft) crafts.push(currentCraft);
+                    currentCraft = {};
+                } else if (line.startsWith('- Nom :')) {
+                    currentCraft.name = line.replace('- Nom :', '').trim();
+                } else if (line.startsWith('- Prix total :')) {
+                    currentCraft.total = line.replace('- Prix total :', '').trim();
+                } else if (line.startsWith('- Rentabilité :')) {
+                    currentCraft.rentabilite = line.replace('- Rentabilité :', '').trim();
+                } else if (line.startsWith('- Date :')) {
+                    currentCraft.timestamp = line.replace('- Date :', '').trim();
+                }
+            });
+
+            if (currentCraft) crafts.push(currentCraft);
+            return crafts;
+        }
     </script>
 </body>
 </html>
